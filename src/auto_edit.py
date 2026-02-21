@@ -3,7 +3,7 @@ import tempfile
 from pathlib import Path
 
 from .lrc_client import LightroomMCPClient
-from .providers.gemini_cli import GeminiCLIProvider
+from .providers.gemini_api_provider import GeminiAPIProvider
 import typer
 import logging
 
@@ -41,7 +41,7 @@ async def auto_edit_workflow(provider_name: str = "gemini"):
         from .providers.openai_provider import OpenAIProvider
         provider = OpenAIProvider()
     else:
-        provider = GeminiCLIProvider()
+        provider = GeminiAPIProvider()
 
     with tempfile.TemporaryDirectory() as tmpdir:
         tmp_path = Path(tmpdir) / "preview.jpg"

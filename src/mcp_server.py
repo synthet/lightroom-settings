@@ -1,7 +1,10 @@
-import os
-import asyncio
+import sys
 from pathlib import Path
 from typing import Optional
+
+# Add project root to sys.path to allow importing from src
+sys.path.append(str(Path(__file__).parent.parent))
+
 from mcp.server.fastmcp import FastMCP
 
 from src.providers.gemini_api_provider import GeminiAPIProvider

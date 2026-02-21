@@ -47,8 +47,9 @@ class LightroomMCPClient:
     async def get_selected_photos(self) -> List[Dict[str, Any]]:
         """Return metadata for currently selected photos."""
         res = await self.send_command("get_selection")
-        if "photos" in res:
-            return res["photos"]
+        result = res.get("result", {})
+        if "photos" in result:
+            return result["photos"]
         return []
 
     async def get_photo_preview(self, photo_id: Optional[str] = None) -> Optional[bytes]:
@@ -58,8 +59,9 @@ class LightroomMCPClient:
             params["photo_id"] = photo_id
             
         res = await self.send_command("get_photo_preview", params)
-        if "photos" in res and len(res["photos"]) > 0:
-            b64_str = res["photos"][0].get("jpegBase64")
+        result = res.get("result", {})
+        if "photos" in result and len(result["photos"]) > 0:
+            b64_str = result["photos"][0].get("jpegBase64")
             if b64_str:
                 return base64.b64decode(b64_str)
         return None
@@ -93,4 +95,4 @@ class LightroomMCPClient:
             return "No settings to apply"
 
         res = await self.send_command("set_develop_settings", {"settings": lrc_settings})
-        return str(res)
+        return str(res.get("result", res))
