@@ -16,7 +16,7 @@ class GeminiAPIProvider(ProviderBase):
     Provider that invokes the Google Gemini API directly using the google-genai library.
     Requires GOOGLE_API_KEY environment variable or config.json.
     """
-    def __init__(self, api_key: Optional[str] = None, model: str = "gemini-2.0-flash"):
+    def __init__(self, api_key: Optional[str] = None, model: str = "gemini-2.5-flash"):
         # Prioritize constructor arg, then config.json, then env var
         self.api_key = api_key
         

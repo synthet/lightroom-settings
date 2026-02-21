@@ -13,10 +13,11 @@ from src.providers.gemini_api_provider import GeminiAPIProvider
 
 async def main():
     if len(sys.argv) < 2:
-        print("Usage: python scripts/test_gemini_direct.py <image_path>")
+        print("Usage: python scripts/test_gemini_direct.py <image_path> [model_name]")
         return
 
     image_path = Path(sys.argv[1])
+    model_name = sys.argv[2] if len(sys.argv) > 2 else None
     if not image_path.exists():
         print(f"Error: {image_path} not found.")
         return
@@ -29,7 +30,7 @@ async def main():
         print("Error: GOOGLE_API_KEY environment variable not set.")
         return
 
-    provider = GeminiAPIProvider(api_key=api_key)
+    provider = GeminiAPIProvider(api_key=api_key, model=model_name) if model_name else GeminiAPIProvider(api_key=api_key)
     
     try:
         settings = await provider.process(image_path)
