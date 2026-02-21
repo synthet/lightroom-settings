@@ -8,8 +8,12 @@ All notable changes to this project will be documented in this file.
 - **Core Models**: Implemented Pydantic models for Lightroom settings, including Light, Color, Presence, Effects, Detail, and Lens Corrections.
 - **AI Providers**:
     - `OpenAIProvider`: Support for image analysis and settings generation using GPT-4o.
-    - `GeminiCLIProvider`: Support for image analysis using Gemini via CLI.
+    - `GeminiCLIProvider`: Support for image analysis using Gemini via CLI (Deprecated in favor of `GeminiAPIProvider`).
+    - `GeminiAPIProvider`: Direct API integration using `google-genai` with support for structured JSON and robust exponential backoff retries (429 mitigation).
     - `MockProvider`: For testing and development without API calls.
+- **Configuration Management**:
+    - Introduced `config.json` for secure local storage of API keys (Git-ignored).
+    - Added `config.example.json` as a template for environment setup.
 - **XMP Logic**: Developed a robust XMP parser and generator to handle Adobe Lightroom Classic sidecar files.
 - **Lightroom Classic Integration**:
     - `LRCClient`: A client to interact with the Lightroom Classic MCP server.

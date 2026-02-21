@@ -167,3 +167,6 @@ cython_debug/
 # Mailbox and specific project
 /mailbox/*
 !/mailbox/.gitkeep
+
+# Local configuration
+config.json

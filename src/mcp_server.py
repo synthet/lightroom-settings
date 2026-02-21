@@ -4,14 +4,15 @@ from pathlib import Path
 from typing import Optional
 from mcp.server.fastmcp import FastMCP
 
-from src.providers.gemini_cli import GeminiCLIProvider
+from src.providers.gemini_api_provider import GeminiAPIProvider
 from src.models import LightroomSettings
 
 # Initialize FastMCP server
 mcp = FastMCP("Lightroom Settings MCP Server")
 
 # Initialize provider
-provider = GeminiCLIProvider(cli_path=os.environ.get("GEMINI_CLI_PATH", "gemini.cmd" if os.name == 'nt' else "gemini"))
+# Default model is gemini-2.0-flash (cheapest/fastest)
+provider = GeminiAPIProvider()
 
 @mcp.tool()
 async def analyze_image(image_path: str, xmp_path: Optional[str] = None) -> str:
