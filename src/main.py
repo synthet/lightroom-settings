@@ -55,13 +55,11 @@ async def analyze_image(
             from .xmp_utils import generate_xmp
             xmp_str = generate_xmp(settings, xmp_path.read_text() if xmp_path else None)
             
-            output_xmp_path = temp_dir_path / "output.xmp"
-            output_xmp_path.write_text(xmp_str, encoding="utf-8")
-            
-            return FileResponse(
-                path=output_xmp_path,
-                filename="suggested_settings.xmp",
-                media_type="application/rdf+xml"
+            from fastapi.responses import Response
+            return Response(
+                content=xmp_str,
+                media_type="application/rdf+xml",
+                headers={"Content-Disposition": "attachment; filename=suggested_settings.xmp"}
             )
             
         # Default behavior is JSON response

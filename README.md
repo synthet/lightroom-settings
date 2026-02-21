@@ -42,3 +42,19 @@ This project is built using Python and provides both a REST API (using FastAPI) 
    ```bash
    uvicorn src.main:app --host 0.0.0.0 --port 8000
    ```
+5. **(Optional) Run the MCP Server:**
+   You can connect to this tool via Model Context Protocol by running:
+   ```bash
+   python -m src.mcp_server
+   ```
+   Or configure it in your MCP client configurations:
+   ```json
+   {
+     "mcpServers": {
+       "lightroom-settings": {
+         "command": "python",
+         "args": ["-m", "src.mcp_server"]
+       }
+     }
+   }
+   ```
