@@ -9,5 +9,5 @@ This project uses several MCP tools to streamline development. Available MCPs:
 
 ## General Guidelines
 1. **Always** check the active `memory` graph or create new entities when establishing a new architecture pattern.
-2. For Lightroom interactions, prioritize using the `lightroom` MCP rather than trying to reverse-engineer catalog SQL databases.
+2. For Lightroom interactions, prioritize using the `lightroom` MCP rather than trying to directly inspect catalog SQL databases.
 3. Refer to `.agents/workflows/` for specific usage guides for these MCPs.
